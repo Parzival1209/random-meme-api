@@ -4,9 +4,27 @@
   <meta charset="UTF-8">
   <title>Random Meme API</title>
   <style>
-    body { font-family: Arial; max-width: 600px; margin: 40px auto; }
-    input[type="text"] { width: 100%; padding: 8px; margin-top: 10px; }
-    button { margin-top: 10px; padding: 10px 16px; }
+    body { 
+      font-family: Arial, sans-serif; 
+      max-width: 600px; 
+      margin: 40px auto; 
+      line-height: 1.5;
+    }
+    input[type="text"] { 
+      width: 100%; 
+      padding: 8px; 
+      margin-top: 10px; 
+      box-sizing: border-box;
+    }
+    button { 
+      margin-top: 10px; 
+      padding: 10px 16px; 
+      cursor: pointer;
+    }
+    #msg {
+      margin-top: 10px;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -18,24 +36,51 @@
   </p>
   <h2>Submit a Meme URL (.png, .jpg, .jpeg, .webp)</h2>
   <form id="memeForm">
-    <input type="text" id="memeUrl" placeholder="https://example.com/meme.png" required>
+    <input 
+      type="text" 
+      id="memeUrl" 
+      placeholder="https://example.com/meme.png" 
+      required
+    >
     <button type="submit">Submit</button>
   </form>
   <p id="msg"></p>
   <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzDFTXfWtVQoa6ll4pUilsBwB34pED4Vw09ftm0nguw-kJwttSOSmoXZZNdYIVZBPujUw/exec";
+    const SCRIPT_URL = 
+      "https://script.google.com/macros/s/AKfycbzDFTXfWtVQoa6ll4pUilsBwB34pED4Vw09ftm0nguw-kJwttSOSmoXZZNdYIVZBPujUw/exec";
+    function validMemeURL(url) {
+      return /^https?:\/\/.+\.(png|jpg|jpeg|webp)$/i.test(url.trim());
+    }
     document.getElementById("memeForm").addEventListener("submit", async (e) => {
       e.preventDefault();
-      const url = document.getElementById("memeUrl").value;
+      const url = document.getElementById("memeUrl").value.trim();
       const msg = document.getElementById("msg");
-      const response = await fetch(SCRIPT_URL, {
-        method: "POST",
-        body: JSON.stringify({ url })
-      });
-      const text = await response.text();
-      msg.textContent = text === "OK"
-        ? "Meme submitted!"
-        : "Error: " + text;
+      if (!validMemeURL(url)) {
+        msg.textContent = "❌ Invalid URL. Must be a direct link ending in .png/.jpg/.jpeg/.webp";
+        msg.style.color = "red";
+        return;
+      }
+      msg.textContent = "Submitting...";
+      msg.style.color = "black";
+      try {
+        const response = await fetch(SCRIPT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ url })
+        });
+        const text = await response.text();
+        if (text === "OK") {
+          msg.textContent = "✅ Meme submitted!";
+          msg.style.color = "green";
+          document.getElementById("memeUrl").value = "";
+        } else {
+          msg.textContent = "❌ Error: " + text;
+          msg.style.color = "red";
+        }
+      } catch (err) {
+        msg.textContent = "❌ Network Error: " + err;
+        msg.style.color = "red";
+      }
     });
   </script>
 </body>
