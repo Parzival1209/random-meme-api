@@ -1,31 +1,10 @@
 [
-  // Local image files
-,
-  // Remote URLs from Google Sheet
-[
-  {
-    "url": "memes/LJIJ_EHeyMTa_mooQyZBKliqIr9IOsNXTzMcBND_9Vo.jpg"
-  },
-  {
-    "url": "memes/QjzDQsDJZ4pfzNYkFHhM_VenAPIOelAPP7z5I3t0UMo.jpg"
-  },
-  {
-    "url": "memes/i14hs1hfcma71.webp"
-  },
-  {
-    "url": "memes/m.webp"
-  },
-  {
-    "url": "memes/programmerhumor-io-programming-memes-b9c1d102634a56c.png"
-  },
-  {
-    "url": "memes/the-guy-learning-python-v0-48n3ctcph6x81.jpg"
-  },
-  {
-    "url": "https://blog.zegocloud.com/wp-content/uploads/2024/02/programming-meme-2.jpg"
-  },
-  {
-    "url": "https://www.reddit.com/media?url=https%3A%2F%2Fpreview.redd.it%2Fkretpgrc9q711.jpg%3Fauto%3Dwebp%26s%3D4ea936ca48e095e23d6dac6b015c1009a59ce417"
-  }
-]
+  "memes/LJIJ_EHeyMTa_mooQyZBKliqIr9IOsNXTzMcBND_9Vo.jpg",
+  "memes/QjzDQsDJZ4pfzNYkFHhM_VenAPIOelAPP7z5I3t0UMo.jpg",
+  "memes/i14hs1hfcma71.webp",
+  "memes/m.webp",
+  "memes/programmerhumor-io-programming-memes-b9c1d102634a56c.png",
+  "memes/the-guy-learning-python-v0-48n3ctcph6x81.jpg",
+  "https://blog.zegocloud.com/wp-content/uploads/2024/02/programming-meme-2.jpg",
+  "https://www.reddit.com/media?url=https%3A%2F%2Fpreview.redd.it%2Fkretpgrc9q711.jpg%3Fauto%3Dwebp%26s%3D4ea936ca48e095e23d6dac6b015c1009a59ce417"
 ]
