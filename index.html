@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Random Meme API</title>
+  <style>
+    body { font-family: Arial; max-width: 600px; margin: 40px auto; }
+    input[type="text"] { width: 100%; padding: 8px; margin-top: 10px; }
+    button { margin-top: 10px; padding: 10px 16px; }
+  </style>
+</head>
+<body>
+  <h1>Random Meme API</h1>
+  <p>
+    <a href="https://parzival1209.github.io/random-meme-api/random-meme.html">
+      <strong>Random Meme</strong>
+    </a>
+  </p>
+  <h2>Submit a Meme URL (.png, .jpg, .jpeg, .webp)</h2>
+  <form id="memeForm">
+    <input type="text" id="memeUrl" placeholder="https://example.com/meme.png" required>
+    <button type="submit">Submit</button>
+  </form>
+  <p id="msg"></p>
+  <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzDFTXfWtVQoa6ll4pUilsBwB34pED4Vw09ftm0nguw-kJwttSOSmoXZZNdYIVZBPujUw/exec";
+    document.getElementById("memeForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const url = document.getElementById("memeUrl").value;
+      const msg = document.getElementById("msg");
+      const response = await fetch(SCRIPT_URL, {
+        method: "POST",
+        body: JSON.stringify({ url })
+      });
+      const text = await response.text();
+      msg.textContent = text === "OK"
+        ? "Meme submitted!"
+        : "Error: " + text;
+    });
+  </script>
+</body>
+</html>
