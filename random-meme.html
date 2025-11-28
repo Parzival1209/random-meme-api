@@ -17,7 +17,7 @@
         } 
         // Otherwise treat it as a local file inside "memes/"
         else {
-          window.location.href = "./memes/" + file;
+          window.location.href = file;
         }
       } catch (e) {
         document.body.innerText = "Error loading meme list: " + e;
