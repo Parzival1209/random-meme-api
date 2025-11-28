@@ -1,0 +1,27 @@
+name: Update Memes.json List
+
+on:
+  push:
+    paths:
+      - "memes/**"
+      - ".github/workflows/update-memes.json.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Generate memes.json
+        run: |
+          echo "[" > memes.json
+          ls memes | jq -R . | paste -sd "," - >> memes.json
+          echo "]" >> memes.json
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Updated memes.json"
+          file_pattern: memes.json
