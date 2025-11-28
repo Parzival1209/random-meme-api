@@ -5,13 +5,23 @@
   <title>Random Meme</title>
   <script>
     async function go() {
-      const list = await fetch("memes.json").then(r => r.json());
-      const file = list[Math.floor(Math.random() * list.length)];
-      if (file.includes("https://")) {
-        window.location.href = file
-      } else {
-      window.location.href = "memes/" + file
-      };
+      try {
+        // Load memes.json located in the same folder as this HTML file
+        const response = await fetch("./memes.json");
+        const list = await response.json();
+        // Pick a random entry
+        const file = list[Math.floor(Math.random() * list.length)];
+        // If it's an absolute URL, use it
+        if (file.startsWith("http://") || file.startsWith("https://")) {
+          window.location.href = file;
+        } 
+        // Otherwise treat it as a local file inside "memes/"
+        else {
+          window.location.href = "./memes/" + file;
+        }
+      } catch (e) {
+        document.body.innerText = "Error loading meme list: " + e;
+      }
     }
     go();
   </script>
