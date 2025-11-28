@@ -1,3 +1,25 @@
 [
-"LJIJ_EHeyMTa_mooQyZBKliqIr9IOsNXTzMcBND_9Vo.jpg","QjzDQsDJZ4pfzNYkFHhM_VenAPIOelAPP7z5I3t0UMo.jpg","i14hs1hfcma71.webp","m.webp","programmerhumor-io-programming-memes-b9c1d102634a56c.png","the-guy-learning-python-v0-48n3ctcph6x81.jpg"
+  // Local image files
+,
+  // Remote URLs from Google Sheet
+[
+  {
+    "url": "memes/LJIJ_EHeyMTa_mooQyZBKliqIr9IOsNXTzMcBND_9Vo.jpg"
+  },
+  {
+    "url": "memes/QjzDQsDJZ4pfzNYkFHhM_VenAPIOelAPP7z5I3t0UMo.jpg"
+  },
+  {
+    "url": "memes/i14hs1hfcma71.webp"
+  },
+  {
+    "url": "memes/m.webp"
+  },
+  {
+    "url": "memes/programmerhumor-io-programming-memes-b9c1d102634a56c.png"
+  },
+  {
+    "url": "memes/the-guy-learning-python-v0-48n3ctcph6x81.jpg"
+  }
+]
 ]
