@@ -4,12 +4,16 @@
   <meta charset="UTF-8">
   <title>Random Meme</title>
   <script>
-  (async () => {
-  const list = await fetch("memes.json").then(r => r.json());
-  const item = list[Math.floor(Math.random() * list.length)];
-
-  window.location.href = item.url;
-  })();
+    async function go() {
+      const list = await fetch("memes.json").then(r => r.json());
+      const file = list[Math.floor(Math.random() * list.length)];
+      if (file.includes("https://")) {
+        window.location.href = file
+      } else {
+      window.location.href = "memes/" + file
+      };
+    }
+    go();
   </script>
 </head>
 <body>
