@@ -5,34 +5,33 @@ permissions:
 
 on:
   schedule:
-    - cron: "0 * * * *"   # runs every hour
+    - cron: "0 * * * *"
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Fetch Google Sheet meme URLs
         run: |
-          curl -L "https://opensheet.elk.sh/1xKWkXyEttoF4blJYAs1ehGZ9S2wSzNmG8a5CMnuHmds/Sheet1" -o sheet.json
+          curl -L \
+            "https://opensheet.elk.sh/1xKWkXyEttoF4blJYAs1ehGZ9S2wSzNmG8a5CMnuHmds/Sheet1" \
+            -o sheet.json
 
       - name: Build memes.json
         run: |
-          echo "[" > memes.json
+          # 1. Build local file list as a JSON array of strings
+          ls memes | jq -R '. | "memes/" + .' | jq -s '.' > local.json
 
-          echo "  // Local image files" >> memes.json
-          ls memes | jq -R --arg prefix "memes/" '{url: ($prefix + .)}' | jq -s . >> local.json
+          # 2. Extract "url" property from Google Sheet rows
+          jq -r '.[].url' sheet.json | jq -R -s 'split("\n")[:-1]' > remote.json
 
-          echo "," >> memes.json
-
-          echo "  // Remote URLs from Google Sheet" >> memes.json
-          jq -s '.[0] + .[1]' local.json sheet.json >> memes_combined.json
-
-          jq '.' memes_combined.json >> memes.json
-          echo "]" >> memes.json
+          # 3. Merge arrays into final JSON list
+          jq -s 'add' local.json remote.json > memes.json
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
