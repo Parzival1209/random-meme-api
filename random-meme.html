@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Random Meme</title>
+  <script>
+    async function go() {
+      const list = await fetch("memes.json").then(r => r.json());
+      const file = list[Math.floor(Math.random() * list.length)];
+      window.location.href = "memes/" + file;
+    }
+    go();
+  </script>
+</head>
+<body>
+  Loading a meme...
+</body>
+</html>
