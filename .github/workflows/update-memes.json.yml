@@ -1,10 +1,11 @@
 name: Update Memes.json List
 
+permissions:
+  contents: write
+
 on:
-  push:
-    paths:
-      - "memes/**"
-      - ".github/workflows/update-memes.json.yml"
+  schedule:
+    - cron: "0 * * * *"   # runs every hour
   workflow_dispatch:
 
 jobs:
@@ -14,10 +15,23 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Generate memes.json
+      - name: Fetch Google Sheet meme URLs
+        run: |
+          curl -L "https://opensheet.elk.sh/1xKWkXyEttoF4blJYAs1ehGZ9S2wSzNmG8a5CMnuHmds/Sheet1" -o sheet.json
+
+      - name: Build memes.json
         run: |
           echo "[" > memes.json
-          ls memes | jq -R . | paste -sd "," - >> memes.json
+
+          echo "  // Local image files" >> memes.json
+          ls memes | jq -R --arg prefix "memes/" '{url: ($prefix + .)}' | jq -s . >> local.json
+
+          echo "," >> memes.json
+
+          echo "  // Remote URLs from Google Sheet" >> memes.json
+          jq -s '.[0] + .[1]' local.json sheet.json >> memes_combined.json
+
+          jq '.' memes_combined.json >> memes.json
           echo "]" >> memes.json
 
       - name: Commit changes
