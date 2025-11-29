@@ -10,7 +10,7 @@
         const response = await fetch("./memes.json");
         const list = await response.json();
         // Pick a random URL
-        const url = list[Math.floor(Math.random() * list.length)];
+        let url = list[Math.floor(Math.random() * list.length)];
         const imageContainer = document.getElementById('imageContainer');
         const img = new Image();
         
@@ -43,9 +43,10 @@
   </script>
   <style>
     html, body {
-      height: 100%;
       margin: 0;
+      height: 100%;
       display: flex;
+      text-color: #ffffff;
       align-items: center;
       background-color: #000;
       justify-content: center;
