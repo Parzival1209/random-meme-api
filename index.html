@@ -5,7 +5,7 @@
   <title>Random Meme API</title>
   <style>
     body { 
-      font-family: Arial, sans-serif; 
+      font-family: Arial, sans-serif;
       max-width: 600px; 
       margin: 40px auto; 
       line-height: 1.5;
@@ -40,14 +40,13 @@
       type="text" 
       id="memeUrl" 
       placeholder="https://example.com/meme.png" 
-      required
-    >
+      required>
     <button type="submit">Submit</button>
   </form>
   <p id="msg"></p>
   <script>
     const SCRIPT_URL = 
-      "https://script.google.com/macros/s/AKfycbzDFTXfWtVQoa6ll4pUilsBwB34pED4Vw09ftm0nguw-kJwttSOSmoXZZNdYIVZBPujUw/exec";
+      "https://script.google.com/macros/s/AKfycbwnrLlSyd6w5sOvWjLONjTx1Dl7-sdmJ_wK3Pm9-W_e5glj3ncnActtjQ-B2ckxpaY4mg/exec";
     function validMemeURL(url) {
       return /^https?:\/\/.+\.(png|jpg|jpeg|webp)$/i.test(url.trim());
     }
@@ -58,6 +57,10 @@
       if (!validMemeURL(url)) {
         msg.textContent = "❌ Invalid URL. Must be a direct link ending in .png/.jpg/.jpeg/.webp";
         msg.style.color = "red";
+        setTimeout(function() {
+            msg.textContent = "";
+            msg.style.color = "black";
+        }, 1500);
         return;
       }
       msg.textContent = "Submitting...";
@@ -72,14 +75,26 @@
         if (text === "OK") {
           msg.textContent = "✅ Meme submitted!";
           msg.style.color = "green";
+          setTimeout(function() {
+            msg.textContent = "";
+            msg.style.color = "black";
+          }, 1500);
           document.getElementById("memeUrl").value = "";
         } else {
           msg.textContent = "❌ Error: " + text;
           msg.style.color = "red";
+          setTimeout(function() {
+            msg.textContent = "";
+            msg.style.color = "black";
+          }, 1500);
         }
       } catch (err) {
         msg.textContent = "❌ Network Error: " + err;
         msg.style.color = "red";
+        setTimeout(function() {
+            msg.textContent = "";
+            msg.style.color = "black";
+          }, 1500);
       }
     });
   </script>
