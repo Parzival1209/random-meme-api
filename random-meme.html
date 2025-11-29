@@ -15,7 +15,7 @@
         const img = new Image();
         
         // If it starts with http:// or https://
-        if (file.startsWith("http://") || file.startsWith("https://")) {
+        if (url.startsWith("http://") || url.startsWith("https://")) {
           img.src = url;
           img.alt = "Random Meme";
           img.style.maxWidth = "100%";
