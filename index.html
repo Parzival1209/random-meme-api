@@ -50,12 +50,15 @@
     function validMemeURL(url) {
       return /^https?:\/\/.+\.(png|jpg|jpeg|webp)$/i.test(url.trim());
     }
+    function redditURL(url) {
+      return /^https?:\/\/www\.reddit\.com\/media\?url=/.test(url.trim());
+    }
     document.getElementById("memeForm").addEventListener("submit", async (e) => {
       e.preventDefault();
       const url = document.getElementById("memeUrl").value.trim();
       const msg = document.getElementById("msg");
       if (!validMemeURL(url)) {
-        msg.textContent = "❌ Invalid URL. Must be a direct link ending in .png/.jpg/.jpeg/.webp";
+        msg.textContent = "Invalid URL. Must be a direct link ending in .png/.jpg/.jpeg/.webp";
         msg.style.color = "red";
         setTimeout(function() {
             msg.textContent = "";
@@ -72,7 +75,7 @@
         });
         const text = await response.text();
         if (text === "OK") {
-          msg.textContent = "✅ Meme submitted!";
+          msg.textContent = "Meme submitted!";
           msg.style.color = "green";
           setTimeout(function() {
             msg.textContent = "";
@@ -80,7 +83,7 @@
           }, 5000);
           document.getElementById("memeUrl").value = "";
         } else {
-          msg.textContent = "❌ Error: " + text;
+          msg.textContent = "Error: " + text;
           msg.style.color = "red";
           setTimeout(function() {
             msg.textContent = "";
@@ -88,7 +91,7 @@
           }, 5000);
         }
       } catch (err) {
-        msg.textContent = "❌ Network Error: " + err;
+        msg.textContent = "Network Error: " + err;
         msg.style.color = "red";
         setTimeout(function() {
             msg.textContent = "";
