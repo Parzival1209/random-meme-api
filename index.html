@@ -57,15 +57,16 @@
       e.preventDefault();
       const url = document.getElementById("memeUrl").value.trim();
       const msg = document.getElementById("msg");
-      if (!validMemeURL(url)) {
-        msg.textContent = "Invalid URL. Must be a direct link ending in .png/.jpg/.jpeg/.webp";
-        msg.style.color = "red";
-        setTimeout(function() {
-            msg.textContent = "";
-            msg.style.color = "black";
-        }, 5000);
-        return;
-      }
+      if (!redditURL(url)) {
+        if (!validMemeURL(url)) {
+          msg.textContent = "Invalid URL. Must be a direct link ending in .png/.jpg/.jpeg/.webp";
+          msg.style.color = "red";
+          setTimeout(function() {
+              msg.textContent = "";
+              msg.style.color = "black";
+          }, 5000);
+          return;
+        }};
       msg.textContent = "Submitting...";
       msg.style.color = "black";
       try {
