@@ -68,7 +68,13 @@
       try {
         const response = await fetch(SCRIPT_URL, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          mode: "cors",
+          cache: "no-cache",
+          headers: { 
+            "Content-Type": "application/json",
+            "Accept": "text/plain",
+            "User-Agent": "Mozilla/5.0"
+          },
           body: JSON.stringify({ url })
         });
         const text = await response.text();
