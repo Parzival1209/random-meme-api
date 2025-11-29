@@ -6,18 +6,31 @@
   <script>
     async function go() {
       try {
-        // Load memes.json located in the same folder as this HTML file
+        // Load memes.json file
         const response = await fetch("./memes.json");
         const list = await response.json();
-        // Pick a random entry
-        const file = list[Math.floor(Math.random() * list.length)];
-        // If it's an absolute URL, use it
+        // Pick a random URL
+        const url = list[Math.floor(Math.random() * list.length)];
+        const imageContainer = document.getElementById('imageContainer');
+        const img = new Image();
+        
+        // If it starts with http:// or https://
         if (file.startsWith("http://") || file.startsWith("https://")) {
-          window.location.href = file;
-        } 
-        // Otherwise treat it as a local file inside "memes/"
+          img.src = url;
+          img.alt = "Random Meme";
+          img.style.maxWidth = "100%";
+          img.style.height = "auto";
+          imageContainer.innerHTML = "";
+          imageContainer.appendChild(img);
+        }
+        // Else treat it as a file in ./memes
         else {
-          window.location.href = file;
+          img.src = "https://parzival1209.github.io/random-meme-api/" + url;
+          img.alt = "Random Meme";
+          img.style.maxWidth = "100%";
+          img.style.height = "auto";
+          imageContainer.innerHTML = "";
+          imageContainer.appendChild(img);
         }
       } catch (e) {
         document.body.innerText = "Error loading meme list: " + e;
@@ -27,6 +40,6 @@
   </script>
 </head>
 <body>
-  Loading a meme...
+  <div id="imageContainer" style="text-align:center; overflow-y:auto; display:flex; gap:8px;"></div>
 </body>
 </html>
