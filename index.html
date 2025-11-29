@@ -60,7 +60,7 @@
         setTimeout(function() {
             msg.textContent = "";
             msg.style.color = "black";
-        }, 1500);
+        }, 5000);
         return;
       }
       msg.textContent = "Submitting...";
@@ -78,7 +78,7 @@
           setTimeout(function() {
             msg.textContent = "";
             msg.style.color = "black";
-          }, 1500);
+          }, 5000);
           document.getElementById("memeUrl").value = "";
         } else {
           msg.textContent = "❌ Error: " + text;
@@ -86,7 +86,7 @@
           setTimeout(function() {
             msg.textContent = "";
             msg.style.color = "black";
-          }, 1500);
+          }, 5000);
         }
       } catch (err) {
         msg.textContent = "❌ Network Error: " + err;
@@ -94,7 +94,7 @@
         setTimeout(function() {
             msg.textContent = "";
             msg.style.color = "black";
-          }, 1500);
+          }, 5000);
       }
     });
   </script>
