@@ -19,7 +19,7 @@ jobs:
       - name: Fetch Google Sheet meme URLs
         run: |
           curl -L \
-            "https://opensheet.elk.sh/1xKWkXyEttoF4blJYAs1ehGZ9S2wSzNmG8a5CMnuHmds/Sheet1" \
+            "https://opensheet.elk.sh/1xKWkXyEttoF4blJYAs1ehGZ9S2wSzNmG8a5CMnuHmds/Meme_URLs" \
             -o sheet.json
 
       - name: Build memes.json
