@@ -46,9 +46,9 @@ h1 {
 
 .top-right {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 6px;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
 }
 
 .credits {
@@ -94,13 +94,13 @@ h1 {
 
 .meme-form {
   display: flex;
-  gap: 12px; /* adds spacing between input + button */
+  gap: 12px;
   margin-top: 12px;
 }
 
 #memeUrl {
   flex: 1;
-  max-width: 250px; /* shorter input */
+  max-width: 250px;
   padding: 8px 12px;
   font-size: 0.95rem;
   border-radius: 6px;
