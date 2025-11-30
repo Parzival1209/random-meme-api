@@ -1,105 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Random Meme API</title>
-  <style>
-    body { 
-      font-family: Arial, sans-serif;
-      max-width: 600px; 
-      margin: 40px auto; 
-      line-height: 1.5;
-    }
-    input[type="text"] { 
-      width: 100%; 
-      padding: 8px; 
-      margin-top: 10px; 
-      box-sizing: border-box;
-    }
-    button { 
-      margin-top: 10px; 
-      padding: 10px 16px; 
-      cursor: pointer;
-    }
-    #msg {
-      margin-top: 10px;
-      font-weight: bold;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <h1>Random Meme API</h1>
-  <p>
-    <a href="https://parzival1209.github.io/random-meme-api/random-meme.html">
-      <strong>Random Meme</strong>
-    </a>
-  </p>
-  <h2>Submit a Meme URL (.png, .jpg, .jpeg, .webp)</h2>
-  <form id="memeForm">
-    <input 
-      type="text" 
-      id="memeUrl" 
-      placeholder="https://example.com/meme.png" 
-      required>
-    <button type="submit">Submit</button>
-  </form>
-  <p id="msg"></p>
+  <main class="wrap">
+    <header>
+      <h1>Random Meme API</h1>
+      <p class="credit">Made by Parzival1209 / Kai Yaron</p>
+    </header>
+
+    <section class="content">
+      <div class="left-side">
+        <h2>Submit a Meme URL</h2>
+        <form id="memeForm">
+          <input
+            type="text"
+            id="memeUrl"
+            placeholder="https://example.com/meme.png"
+            required>
+          <button type="submit" class="btn">Submit</button>
+        </form>
+        <p id="msg"></p>
+      </div>
+
+      <div class="right-side">
+        <h3>Accepted Formats</h3>
+        <ul>
+          <li>.png</li>
+          <li>.jpg</li>
+          <li>.jpeg</li>
+          <li>.gif</li>
+          <li>.webp</li>
+        </ul>
+
+        <h3>Special URLs</h3>
+        <ul>
+          <li>Reddit media links</li>
+          <li>(More coming soon)</li>
+        </ul>
+
+        <p>
+          <a href="https://parzival1209.github.io/random-meme-api/random-meme.html"
+             class="open">Random Meme Page</a>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
   <script>
-    const SCRIPT_URL = 
+    const SCRIPT_URL =
       "https://script.google.com/macros/s/AKfycbw8F8uGvDEf_X4XCCsCcfotq-y6r7VplwHOQQ5NmuUNBsRvdB1DnDsKcTCCR2NneISfvQ/exec";
+
     function validMemeURL(url) {
-      return /^https?:\/\/.+\.(png|jpg|jpeg|webp)$/i.test(url.trim());
+      return /^https?:\/\/.+\.(png|jpg|jpeg|webp|gif)$/i.test(url.trim());
     }
+
     function redditURL(url) {
       return /^https?:\/\/www\.reddit\.com\/media\?url=/.test(url.trim());
     }
+
     document.getElementById("memeForm").addEventListener("submit", async (e) => {
       e.preventDefault();
       const url = document.getElementById("memeUrl").value.trim();
       const msg = document.getElementById("msg");
+
       if (!redditURL(url)) {
         if (!validMemeURL(url)) {
-          msg.textContent = "Invalid URL. Must be a direct link ending in .png/.jpg/.jpeg/.webp";
+          msg.textContent = "Invalid URL. Must be a direct image link.";
           msg.style.color = "red";
-          setTimeout(function() {
-              msg.textContent = "";
-              msg.style.color = "black";
-          }, 5000);
+          setTimeout(() => msg.textContent = "", 5000);
           return;
-        }};
+        }
+      }
+
       msg.textContent = "Submitting...";
       msg.style.color = "black";
+
       try {
         const response = await fetch(SCRIPT_URL, {
           method: "POST",
           body: JSON.stringify({ url })
         });
+
         const text = await response.text();
+
         if (text === "OK") {
           msg.textContent = "Meme submitted!";
           msg.style.color = "green";
-          setTimeout(function() {
-            msg.textContent = "";
-            msg.style.color = "black";
-          }, 5000);
           document.getElementById("memeUrl").value = "";
         } else {
           msg.textContent = "Error: " + text;
           msg.style.color = "red";
-          setTimeout(function() {
-            msg.textContent = "";
-            msg.style.color = "black";
-          }, 5000);
         }
+
+        setTimeout(() => msg.textContent = "", 5000);
+
       } catch (err) {
         msg.textContent = "Network Error: " + err;
         msg.style.color = "red";
-        setTimeout(function() {
-            msg.textContent = "";
-            msg.style.color = "black";
-          }, 5000);
+        setTimeout(() => msg.textContent = "", 5000);
       }
     });
   </script>
+
 </body>
 </html>
