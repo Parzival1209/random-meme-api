@@ -31,9 +31,9 @@ html, body {
 
 .top-section {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding-bottom: 18px;
+  justify-content: space-between;
   border-bottom: 3px solid var(--accent);
 }
 
@@ -45,15 +45,15 @@ h1 {
 }
 
 .top-right {
+  gap: 12px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 12px;
 }
 
 .credits {
-  opacity: 0.85;
   margin: 0;
+  opacity: 0.85;
   font-size: 0.9rem;
   text-align: right;
 }
@@ -75,11 +75,11 @@ h1 {
 /* ---------- BOTTOM SECTION ---------- */
 
 .bottom-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
   gap: 40px;
+  display: flex;
   padding-top: 24px;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .left-col {
@@ -93,14 +93,15 @@ h1 {
 /* ---------- FORM ---------- */
 
 .meme-form {
-  display: flex;
   gap: 12px;
+  display: flex;
   margin-top: 12px;
 }
 
 #memeUrl {
   flex: 1;
   max-width: 250px;
+  transition: 0.2s;
   padding: 8px 12px;
   font-size: 0.95rem;
   border-radius: 6px;
@@ -130,13 +131,19 @@ h1 {
 /* ---------- LISTS ---------- */
 
 .lists-row {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
   gap: 40px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 ul {
   margin: 0;
   padding-left: 18px;
+}
+
+.accepted-formats ul {
+  columns: 2;
+  -moz-columns: 2;
+  -webkit-columns: 2;
 }
