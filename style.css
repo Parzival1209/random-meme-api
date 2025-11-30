@@ -4,6 +4,7 @@
   --accent: #ff5e00;
   --border: #e4dfd6;
   --text-color: #1a1a1a;
+  --accent-dark: #c64a00;
   --font-body: 'IBM Plex Sans', system-ui;
   --font-display: 'Space Grotesk', system-ui;
 }
@@ -52,9 +53,11 @@ h1 {
   opacity: 0.85;
   margin-top: 6px;
   font-size: 0.9rem;
+  text-align: center;
 }
 
 .open {
+  gap: 12px;
   color: #fff;
   transition: 0.2s;
   font-weight: 700;
@@ -64,7 +67,13 @@ h1 {
   background: var(--accent);
 }
 .open:hover {
-  background: #c64a00;
+  background: var(--accent-dark);
+}
+
+.grid {
+  gap: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
 }
 
 .lists-row {
@@ -95,6 +104,11 @@ ul {
   border: 2px solid var(--accent);
 }
 
+#memeUrl:focus {
+  outline: none;
+  border-color: var(--accent-dark);
+}
+
 .btn {
   color: white;
   border: none;
@@ -107,5 +121,5 @@ ul {
 }
 
 .btn:hover {
-  background: #c64a00;
+  background: var(--accent-dark);
 }
