@@ -8,54 +8,57 @@
 <body>
 
 <main class="wrap" role="main">
-  <header>
+
+  <header class="top-section">
     <h1>Random Meme API</h1>
 
     <div class="top-right">
-      <div>
-        <a href="https://parzival1209.github.io/random-meme-api/random-meme.html" class="open">
-          API
-        </a>
-      </div>
-      <div>
-        <p class="credits">
-          Made by<br>
-          Parzival1209</p>
-      </div>
+      <a href="https://parzival1209.github.io/random-meme-api/random-meme.html" class="open">
+        API
+      </a>
+      <p class="credits">Made by<br>Parzival1209</p>
     </div>
   </header>
 
-  <section class="grid">
-    <h2>Submit a Meme URL</h2>
-    <form id="memeForm" class="meme-form">
-      <input
-        type="text"
-        id="memeUrl"
-        placeholder="https://example.com/meme.png"
-        required>
-      <button type="submit" class="btn">Submit</button>
-    </form>
-    <p id="msg"></p>
+  <section class="bottom-section">
+    <div class="left-col">
+      <h2>Submit a Meme URL</h2>
 
-    <div class="lists-row">
-      <div>
-        <h3>Accepted formats</h3>
-        <ul>
-          <li>.png</li>
-          <li>.gif</li>
-          <li>.jpg</li>
-          <li>.jpeg</li>
-          <li>.webp</li>
-        </ul>
-      </div>
-      <div>
-        <h3>Special URLs</h3>
-        <ul>
-          <li>Reddit media links</li>
-        </ul>
+      <form id="memeForm" class="meme-form">
+        <input
+          type="text"
+          id="memeUrl"
+          placeholder="https://example.com/meme.png"
+          required>
+        <button type="submit" class="btn">Submit</button>
+      </form>
+
+      <p id="msg"></p>
+    </div>
+
+    <div class="right-col">
+      <div class="lists-row">
+        <div>
+          <h3>Accepted formats</h3>
+          <ul>
+            <li>.png</li>
+            <li>.gif</li>
+            <li>.jpg</li>
+            <li>.jpeg</li>
+            <li>.webp</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Special URLs</h3>
+          <ul>
+            <li>Reddit media links</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
+
 </main>
 
 <script>
