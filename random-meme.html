@@ -35,7 +35,7 @@
         imageContainer.innerHTML = "";
         imageContainer.appendChild(img);
       } catch (e) {
-        document.body.innerText = "Error loading meme list: " + e;
+        document.body.innerText = e;
       }
     }
 
@@ -46,7 +46,7 @@
       margin: 0;
       height: 100%;
       display: flex;
-      text-color: #ffffff;
+      color: #ffffff;
       align-items: center;
       justify-content: center;
       background-color: #000000;
