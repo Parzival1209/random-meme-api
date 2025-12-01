@@ -11,9 +11,12 @@
         const list = await response.json();
         // Pick a random URL
         let url = list[Math.floor(Math.random() * list.length)];
-        
+        const imageContainer = document.getElementById('imageContainer');
         const img = new Image();
-        img.style = "display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;";
+        
+        img.alt = "Random Meme";
+        img.style.maxWidth = "100%";
+        img.style.height = "auto";
 
         // Check if the URL is a Reddit media link
         if (url.startsWith("https://www.reddit.com/media?url=")) {
@@ -29,7 +32,8 @@
           img.src = "https://parzival1209.github.io/random-meme-api/" + url;
         }
 
-        document.body = img;
+        imageContainer.innerHTML = "";
+        imageContainer.appendChild(img);
       } catch (e) {
         document.body.innerText = "Error loading meme list: " + e;
       }
@@ -44,8 +48,8 @@
       display: flex;
       text-color: #ffffff;
       align-items: center;
-      background-color: #000;
       justify-content: center;
+      background-color: #000000;
     }
     #imageContainer {
       color: #ffffff;
@@ -57,5 +61,6 @@
   </style>
 </head>
 <body>
+  <div id="imageContainer"></div>
 </body>
 </html>
