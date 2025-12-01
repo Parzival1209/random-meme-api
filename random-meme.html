@@ -29,8 +29,7 @@
           img.src = "https://parzival1209.github.io/random-meme-api/" + url;
         }
 
-        document.body.innerHTML = "";
-        document.body.appendChild(img);
+        document.body = img;
       } catch (e) {
         document.body.innerText = "Error loading meme list: " + e;
       }
