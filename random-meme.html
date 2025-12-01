@@ -13,7 +13,6 @@
         let url = list[Math.floor(Math.random() * list.length)];
         const img = new Image();
         
-        img.alt = "Random Meme";
         img.style.maxWidth = "100%";
         img.style.height = "auto";
 
@@ -31,6 +30,7 @@
           img.src = "https://parzival1209.github.io/random-meme-api/" + url;
         }
 
+        document.body.innerHTML = "";
         document.body.appendChild(img);
       } catch (e) {
         document.body.innerText = "Error loading meme list: " + e;
