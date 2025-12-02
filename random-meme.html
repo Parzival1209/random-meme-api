@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script>
+    async function run() {
+      const backend = "https://script.google.com/macros/s/AKfycby2kYhZj05o1g4FXl6seREE-7jskYwa9aORM08Yoe-RnEtYqiGdREzPndEZUho4A6QP/exec";
+      try {
+        const res = await fetch(backend);
+        const data = await res.json();
+        // Returns only the meme URL
+        document.write(data.url);
+        // Returns full JSON
+        // document.write(JSON.stringify(data));
+      } catch (err) {
+        document.write(JSON.stringify({ error: "API frontend error" + err.toString() }));
+      }
+    }
+    run();
+  </script>
+</head>
+<body></body>
+</html>
