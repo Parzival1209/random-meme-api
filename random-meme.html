@@ -6,8 +6,8 @@
   <script>
     async function run() {
       const api = "https://script.google.com/macros/s/AKfycbwR7OkyhCVETCsbuu92JMNmo_Le8u7i4Zgppis35vk6H9a-4GFH9m2UqQLaDJhDXMSeRg/exec";
-      const jsonContainer = document.querySelector('pre');
       try {
+        const jsonContainer = document.querySelector('pre');
         const response = await fetch(api);
         const meme = await response.json();
         jsonContainer.textContent = JSON.stringify(meme);
