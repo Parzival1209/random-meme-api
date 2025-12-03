@@ -6,12 +6,13 @@
   <script>
     async function run() {
       const api = "https://script.google.com/macros/s/AKfycbw8F8uGvDEf_X4XCCsCcfotq-y6r7VplwHOQQ5NmuUNBsRvdB1DnDsKcTCCR2NneISfvQ/exec";
+      const jsonContainer = document.querySelector('pre');
       try {
         const response = await fetch(api);
         const meme = await response.json();
-        document.body.write(JSON.stringify(meme));
+        jsonContainer.textContent(JSON.stringify(meme));
       } catch (err) {
-        document.write(JSON.stringify({ error: "API error: " + err.toString() }));
+        document.write(JSON.stringify({ "API error": err.toString() }));
       }
     }
     run();
