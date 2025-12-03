@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="color-scheme" content="light dark">
   <meta charset="UTF-8">
   <script>
     async function run() {
-      const backend = "https://script.google.com/macros/s/AKfycby2kYhZj05o1g4FXl6seREE-7jskYwa9aORM08Yoe-RnEtYqiGdREzPndEZUho4A6QP/exec";
+      const api = "https://script.google.com/macros/s/AKfycbw8F8uGvDEf_X4XCCsCcfotq-y6r7VplwHOQQ5NmuUNBsRvdB1DnDsKcTCCR2NneISfvQ/exec";
       try {
-        const res = await fetch(backend);
-        const data = await res.json();
-        // Returns only the meme URL
-        document.write(data.url);
-        // Returns full JSON
-        // document.write(JSON.stringify(data));
+        const response = await fetch(api);
+        const meme = await response.json();
+        document.body.write(JSON.stringify(meme));
       } catch (err) {
-        document.write(JSON.stringify({ error: "API frontend error" + err.toString() }));
+        document.write(JSON.stringify({ error: "API error: " + err.toString() }));
       }
     }
     run();
   </script>
 </head>
-<body></body>
+<body>
+  <pre></pre>
+</body>
 </html>
