@@ -10,9 +10,9 @@
       try {
         const response = await fetch(api);
         const meme = await response.json();
-        jsonContainer.textContent(JSON.stringify(meme));
+        jsonContainer.textContent = JSON.stringify(meme);
       } catch (err) {
-        document.write(JSON.stringify({ "API error": err.toString() }));
+        jsonContainer.textContent = JSON.stringify({ "API error": err.toString() });
       }
     }
     run();
@@ -20,5 +20,7 @@
 </head>
 <body>
   <pre></pre>
+  <div class="json-formatter-container"></div>
+  <div id="quick-start-container"></div>
 </body>
 </html>
