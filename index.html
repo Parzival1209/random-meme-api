@@ -1,123 +1,120 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>Random Meme API</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8">
+    <title>Random Meme API</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
 
-<main class="wrap" role="main">
+  <body>
+  <main class="wrap" role="main">
 
-  <header class="top-section">
-    <h1>Random Meme API</h1>
+    <header class="top-section">
+      <h1>Random Meme API</h1>
+      <div class="top-right">
+        <p class="credits">Made by<br>Parzival1209</p>
+        <a href="https://parzival1209.github.io/random-meme-api/random-meme.html" class="open">
+          API
+        </a>
+      </div>
+    </header>
 
-    <div class="top-right">
-      <p class="credits">Made by<br>Parzival1209</p>
-      <a href="https://parzival1209.github.io/random-meme-api/random-meme.html" class="open">
-        API
-      </a>
-    </div>
-  </header>
+    <section class="bottom-section">
+      <div class="left-col">
+        <h2>Submit a Meme URL</h2>
+        <form id="memeForm" class="meme-form">
+          <input
+            type="text"
+            id="memeUrl"
+            placeholder="https://example.com/meme.png"
+            required>
+          <button type="submit" class="btn">Submit</button>
+        </form>
+        <p id="msg"></p>
+      </div>
 
-  <section class="bottom-section">
-    <div class="left-col">
-      <h2>Submit a Meme URL</h2>
-
-      <form id="memeForm" class="meme-form">
-        <input
-          type="text"
-          id="memeUrl"
-          placeholder="https://example.com/meme.png"
-          required>
-        <button type="submit" class="btn">Submit</button>
-      </form>
-
-      <p id="msg"></p>
-    </div>
-
-    <div class="right-col">
-      <div class="lists-row">
-        <div class="accepted-formats">
-          <h3>Accepted formats</h3>
-          <ul>
-            <li>.png</li>
-            <li>.gif</li>
-            <li>.jpg</li>
-            <li>.jpeg</li>
-            <li>.webp</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3>Special URLs</h3>
-          <ul>
-            <li>Reddit media links</li>
-          </ul>
+      <div class="right-col">
+        <div class="lists-row">
+          <div class="accepted-formats">
+            <h3>Accepted formats</h3>
+            <ul>
+              <li>.png</li>
+              <li>.gif</li>
+              <li>.jpg</li>
+              <li>.jpeg</li>
+              <li>.webp</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Special URLs</h3>
+            <ul>
+              <li>Reddit media links</li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-</main>
+  </main>
+    <script>
+      const api =
+       "https://script.google.com/macros/s/AKfycbwR7OkyhCVETCsbuu92JMNmo_Le8u7i4Zgppis35vk6H9a-4GFH9m2UqQLaDJhDXMSeRg/exec";
 
-<script>
-  const SCRIPT_URL =
-   "https://script.google.com/macros/s/AKfycbwR7OkyhCVETCsbuu92JMNmo_Le8u7i4Zgppis35vk6H9a-4GFH9m2UqQLaDJhDXMSeRg/exec";
-
-  function validMemeURL(url) {
-    return /^https?:\/\/.+\.(png|gif|jpg|jpeg|webp)$/i.test(url.trim());
-  }
-  function redditURL(url) {
-    return /^https?:\/\/www\.reddit\.com\/media\?url=/.test(url.trim());
-  }
-
-  document.getElementById("memeForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const url = document.getElementById("memeUrl").value.trim();
-    const msg = document.getElementById("msg");
-
-    if (!redditURL(url)) {
-      if (!validMemeURL(url)) {
-        msg.textContent = "Invalid URL format. Must end in .png/.gif/.jpg/.jpeg/.webp";
-        msg.style.color = "red";
-        setTimeout(() => { msg.textContent = ""; }, 5000);
-        return;
+      function validMemeURL(url) {
+        return /^https?:\/\/.+\.(png|gif|jpg|jpeg|webp)$/i.test(url.trim());
       }
-    }
+      function redditURL(url) {
+        return /^https?:\/\/www\.reddit\.com\/media\?url=/.test(url.trim());
+      }
 
-    msg.style.color = "black";
-    msg.textContent = "Submitting";
-    setTimeout(() => { msg.textContent = "Submitting."; }, 250);
-    setTimeout(() => { msg.textContent = "Submitting.."; }, 500);
-    setTimeout(() => { msg.textContent = "Submitting..."; }, 750);
+      document.getElementById("memeForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const url = document.getElementById("memeUrl").value.trim();
+        const msg = document.getElementById("msg");
 
-    try {
-      const response = await fetch(SCRIPT_URL, {
-        method: "POST",
-        body: JSON.stringify({ url })
+        if (!redditURL(url)) {
+          if (!validMemeURL(url)) {
+            msg.textContent = "Invalid URL format. Must end in .png/.gif/.jpg/.jpeg/.webp";
+            msg.style.color = "red";
+            setTimeout(() => { msg.textContent = ""; }, 5000);
+            return;
+          }
+        }
+
+        let dots = "";
+        msg.style.color = "black";
+        msg.textContent = "Submitting";
+        const submitInterval = setInterval(() => {
+            dots = (dots.length < 3) ? dots + "." : "";
+            msg.textContent = "Submitting" + dots;
+        }, 500);
+
+        try {
+          const response = await fetch(api, {
+            method: "POST",
+            body: JSON.stringify({ url })
+          });
+
+          const text = await response.text();
+          clearInterval(submitInterval);
+          if (text === "OK") {
+            msg.textContent = "Meme submitted!";
+            msg.style.color = "green";
+            setTimeout(() => { msg.textContent = ""; }, 2500);
+            document.getElementById("memeUrl").value = "";
+          } else if (/^API .* error: /.test(text)) {
+            msg.textContent = text;
+            msg.style.color = "red";
+          } else {
+            msg.textContent = text;
+            msg.style.color = "red";
+            setTimeout(() => { msg.textContent = ""; }, 2500);
+          }
+        } catch (err) {
+          msg.textContent = "API Web Page error: " + err.toString() + ".";
+          msg.style.color = "red";
+        }
       });
-
-      const text = await response.text();
-      if (text === "OK") {
-        msg.textContent = "Meme submitted!";
-        msg.style.color = "green";
-        setTimeout(() => { msg.textContent = ""; }, 5000);
-        document.getElementById("memeUrl").value = "";
-      } else if (text.startsWith("Web App error: ")) {
-        msg.textContent = text + ".";
-        msg.style.color = "red";
-      } else {
-        msg.textContent = text;
-        msg.style.color = "red";
-        setTimeout(() => { msg.textContent = ""; }, 5000);
-      }
-    } catch (err) {
-      msg.textContent = "Web Page error: " + err + ".";
-      msg.style.color = "red";
-    }
-  });
-</script>
-
-</body>
+    </script>
+  </body>
 </html>
