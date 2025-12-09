@@ -1,4 +1,4 @@
-name: Generate Meme Metadata
+name: Update Memes-metadata.json List
 
 on:
   workflow_run:
