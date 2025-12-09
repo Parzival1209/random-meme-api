@@ -19,7 +19,7 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install image-size node-fetch
+        run: npm install --no-save image-size node-fetch@2
 
       - name: Generate metadata
         run: node get-meme-metadata.js
@@ -29,5 +29,5 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add memes-metadata.json
-          git commit -m "Updated memes-metadata.json"
+          git commit -m "Updated memes-metadata.json" || echo "No changes to commit"
           git push
