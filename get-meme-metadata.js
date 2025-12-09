@@ -23,7 +23,7 @@ memes = memes.map(memeUrl => {
   // Prepend missing protocols
   if (!memeUrl.startsWith("http://") && !memeUrl.startsWith("https://") && !memeUrl.startsWith("Count")) {
     if (memeUrl.startsWith("memes/")) {
-      memeUrl = "https://parzival1209.github.io/random-meme-api/" + memeUrl;
+      memeUrl = "https://raw.githubusercontent.com/Parzival1209/random-meme-api/refs/heads/main/" + memeUrl;
     } else {
       memeUrl = "https://" + memeUrl;
     }
