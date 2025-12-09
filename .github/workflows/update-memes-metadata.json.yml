@@ -2,8 +2,9 @@ name: Update Memes-metadata.json List
 
 on:
   workflow_run:
-    workflows: ["update-memes.json"]
+    workflows: ["Update Memes.json List"]
     types: [completed]
+  workflow_dispatch:
 
 jobs:
   build:
