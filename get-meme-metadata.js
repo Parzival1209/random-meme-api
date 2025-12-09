@@ -2,7 +2,35 @@ import fs from "fs";
 import sizeOf from "image-size";
 import fetch from "node-fetch";
 
-const memes = JSON.parse(fs.readFileSync("memes.json"));
+let memes = JSON.parse(fs.readFileSync("memes.json"));
+memes = memes.map(memeUrl => {
+
+  // Reddit media link handling
+  if (memeUrl.startsWith("https://www.reddit.com/media?url=")) {
+    const queryString = memeUrl.split("?")[1];
+    const params = {};
+
+    queryString.split("&").forEach(pair => {
+      const [key, value] = pair.split("=");
+      params[key] = value;
+    });
+
+    if (params.url) {
+      memeUrl = decodeURIComponent(params.url);
+    }
+  }
+
+  // Prepend missing protocols
+  if (!memeUrl.startsWith("http://") && !memeUrl.startsWith("https://") && !memeUrl.startsWith("Count")) {
+    if (memeUrl.startsWith("memes/")) {
+      memeUrl = "https://parzival1209.github.io/random-meme-api/" + memeUrl;
+    } else {
+      memeUrl = "https://" + memeUrl;
+    }
+  }
+
+  return memeUrl;
+});
 
 async function getSize(url) {
   const arrayBuffer = await fetch(url).then(r => r.arrayBuffer());
