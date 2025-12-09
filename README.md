@@ -8,4 +8,4 @@ The key-value pairs must be written in this format: https://example.com?key1=val
 The parameters currently available are format and count.<br>
 The parameter format controls the format of the returned URL(s). The available formats are HTML, JSON, and plain text. Note that setting the format to HTML returns the **entire HTML code** for a simple webpage that displays a single randomly chosen meme **as text.** <br>
 The parameter count controls the number of returned URLs. The minimum value count is 1, and the maximum value is the size of the meme database.<br>
-<u>**Important!!! When fetching the API URL using JavaScript, use the fetch method "Get".** </u><br>
+<ins>**Important!!! When fetching the API URL using JavaScript, use the fetch method "Get".** </ins><br>
