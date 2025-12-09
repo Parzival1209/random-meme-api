@@ -1,28 +1,35 @@
 {
-  "memes/LJIJ_EHeyMTa_mooQyZBKliqIr9IOsNXTzMcBND_9Vo.jpg": {
-    "error": true
+  "https://raw.githubusercontent.com/Parzival1209/random-meme-api/refs/heads/main/memes/LJIJ_EHeyMTa_mooQyZBKliqIr9IOsNXTzMcBND_9Vo.jpg": {
+    "width": 600,
+    "height": 315
   },
-  "memes/QjzDQsDJZ4pfzNYkFHhM_VenAPIOelAPP7z5I3t0UMo.jpg": {
-    "error": true
+  "https://raw.githubusercontent.com/Parzival1209/random-meme-api/refs/heads/main/memes/QjzDQsDJZ4pfzNYkFHhM_VenAPIOelAPP7z5I3t0UMo.jpg": {
+    "width": 559,
+    "height": 559
   },
-  "memes/i14hs1hfcma71.webp": {
-    "error": true
+  "https://raw.githubusercontent.com/Parzival1209/random-meme-api/refs/heads/main/memes/i14hs1hfcma71.webp": {
+    "width": 720,
+    "height": 889
   },
-  "memes/m.webp": {
-    "error": true
+  "https://raw.githubusercontent.com/Parzival1209/random-meme-api/refs/heads/main/memes/m.webp": {
+    "width": 1200,
+    "height": 670
   },
-  "memes/programmerhumor-io-programming-memes-b9c1d102634a56c.png": {
-    "error": true
+  "https://raw.githubusercontent.com/Parzival1209/random-meme-api/refs/heads/main/memes/programmerhumor-io-programming-memes-b9c1d102634a56c.png": {
+    "width": 503,
+    "height": 781
   },
-  "memes/the-guy-learning-python-v0-48n3ctcph6x81.jpg": {
-    "error": true
+  "https://raw.githubusercontent.com/Parzival1209/random-meme-api/refs/heads/main/memes/the-guy-learning-python-v0-48n3ctcph6x81.jpg": {
+    "width": 489,
+    "height": 343
   },
   "https://blog.zegocloud.com/wp-content/uploads/2024/02/programming-meme-2.jpg": {
     "width": 487,
     "height": 600
   },
-  "https://www.reddit.com/media?url=https%3A%2F%2Fpreview.redd.it%2Fkretpgrc9q711.jpg%3Fauto%3Dwebp%26s%3D4ea936ca48e095e23d6dac6b015c1009a59ce417": {
-    "error": true
+  "https://preview.redd.it/kretpgrc9q711.jpg?auto=webp&s=4ea936ca48e095e23d6dac6b015c1009a59ce417": {
+    "width": 960,
+    "height": 615
   },
   "https://miro.medium.com/v2/resize:fit:1400/1*SRFVbPL0SFAmJiPs4NgJkQ.jpeg": {
     "width": 1080,
