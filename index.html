@@ -92,7 +92,7 @@
         try {
           const response = await fetch(api, {
             method: "POST",
-            body: JSON.stringify({ url })
+            body: JSON.stringify({ "url": url, "token": "r4kT8FzN9qWmYxE2C7LJpH0bV6sD5A_U" })
           });
 
           const text = await response.text();
