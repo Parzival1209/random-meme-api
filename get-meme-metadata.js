@@ -54,3 +54,7 @@ async function main() {
 }
 
 main();
+fetch("https://script.google.com/macros/s/AKfycbwR7OkyhCVETCsbuu92JMNmo_Le8u7i4Zgppis35vk6H9a-4GFH9m2UqQLaDJhDXMSeRg/exec", {
+  method: "POST",
+  body: JSON.stringify({ "url": "Update meme list and metadata cache.", "token": "r4kT8FzN9qWmYxE2C7LJpH0bV6sD5A_U" })
+});
