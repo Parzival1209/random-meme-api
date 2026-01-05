@@ -1,5 +1,5 @@
 This random meme API was primarily built for https://qwertyhu66.github.io/Useless-Web-Projects, a project I'm working on with a friend.<br>
-On the GitHub Pages website for this repository, you can find information on adding, removing, updating, and replacing images in the database.<br>
+On the GitHub Pages website for this repository, you can find the actual URL for the random meme API, and you can add, remove, and edit images in the database.<br>
 *Note that currently, the website and API only support adding images to the database.*<br>
 <br>
 **Instructions on how to use the API**<br>
